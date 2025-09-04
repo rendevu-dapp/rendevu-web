@@ -9,19 +9,47 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.23",
+    "@apollo/client": "^4.0.4",
+    "@heroui/react": "^2.8.3",
+    "@heroui/use-infinite-scroll": "^2.2.11",
+    "@hookform/resolvers": "^5.2.1",
+    "@inquirer/prompts": "^7.8.4",
+    "@lottiefiles/dotlottie-react": "^0.15.2",
+    "@phosphor-icons/react": "^2.1.10",
+    "@react-stately/data": "^3.14.0",
+    "@untitledui/icons": "^0.0.19",
+    "@vis.gl/react-google-maps": "^1.5.5",
+    "ai": "^5.0.30",
+    "babel-plugin-react-compiler": "^19.1.0-rc.3",
+    "date-fns": "^4.1.0",
+    "firebase": "^12.2.1",
+    "framer-motion": "^12.23.12",
+    "graphql": "^16.11.0",
+    "lodash": "^4.17.21",
+    "next": "15.5.2",
+    "qr-code-styling": "^1.9.2",
     "react": "19.1.0",
+    "react-aria": "^3.43.1",
+    "react-aria-components": "^1.12.1",
     "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "react-hook-form": "^7.62.0",
+    "react-responsive": "^10.0.1",
+    "sharp": "^0.34.3",
+    "tailwind-merge": "^3.3.1",
+    "thirdweb": "^5.105.41",
+    "typesense": "^2.1.0",
+    "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
