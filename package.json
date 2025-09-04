@@ -4,13 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "dev:watch": "bun run get-schema && bunx concurrently \"bun run codegen:watch\" \"bun run dev\"",
+    "get-schema": "bun scripts/get-schema.ts",
+    "codegen": "bunx graphql-codegen --config codegen.ts",
+    "codegen:get-schema": "bun run get-schema && bun run codegen",
+    "codegen:watch": "bunx graphql-codegen --config codegen.ts --watch",
+    "codegen:get-schema:watch": "bun run get-schema && bun run codegen:watch"
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.23",
-    "@apollo/client": "^4.0.4",
+    "@apollo/client": "^3.13.8",
     "@heroui/react": "^2.8.3",
     "@heroui/use-infinite-scroll": "^2.2.11",
     "@hookform/resolvers": "^5.2.1",
