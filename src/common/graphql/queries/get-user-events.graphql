@@ -1,0 +1,67 @@
+query GetUserEvents(
+    $orderBy: [EventOrderByInput!]!
+    $after: String
+    $first: Int
+    $where: EventWhereInput
+) {
+    eventsConnection(
+        orderBy: $orderBy
+        after: $after
+        first: $first
+        where: $where
+    ) {
+        totalCount
+        edges {
+            cursor
+            node {
+                id
+                eventId
+                metadataHash
+                isPaid
+                organizer
+                startDate
+                endDate
+                metadata {
+                    title
+                    description
+                    image
+                    virtualLink
+                    location {
+                        id
+                        name
+                        address
+                        placeId
+                        latitude
+                        longitude
+                    }
+                }
+                tickets {
+                    id
+                    attendee
+                    payment {
+                        amount
+                        token {
+                            id
+                            tokenAddress
+                        }
+                        payer
+                    }
+                    registration {
+                        id
+                        attendee
+                        approved
+                        approvedAt
+                        registeredAt
+                    }
+                    issuedAt
+                }
+            }
+        }
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+        }
+    }
+}

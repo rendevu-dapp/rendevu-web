@@ -1,0 +1,8 @@
+query GetUserEventsStats(
+    $orderBy: [EventOrderByInput!]!
+    $where: EventWhereInput
+) {
+    eventsConnection(orderBy: $orderBy, where: $where) {
+        totalCount
+    }
+}
