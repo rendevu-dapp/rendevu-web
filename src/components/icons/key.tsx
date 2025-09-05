@@ -1,0 +1,68 @@
+// types
+import { IconProps } from "@/common/types/icon";
+
+export const KeyIcon = ({
+  stroke = "#26B961",
+  strokeWidth = 2,
+  size,
+  height,
+  width,
+  ...props
+}: IconProps) => {
+  const finalWidth = width || size || 18;
+  const finalHeight = height || size || 18;
+
+  return (
+    <svg
+      width={finalWidth}
+      height={finalHeight}
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M2.25 6.75V3.375C2.25 2.75368 2.75368 2.25 3.375 2.25H14.625C15.2463 2.25 15.75 2.75368 15.75 3.375V6.75"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.875 9.75L12.375 4.875"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.75 7.875L11.25 9.375"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.625 6L13.125 7.5"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M2.25 11.25V14.625C2.25 15.2463 2.75368 15.75 3.375 15.75H14.625C15.2463 15.75 15.75 15.2463 15.75 14.625V11.25"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.75 13.125C7.78553 13.125 8.625 12.2855 8.625 11.25C8.625 10.2145 7.78553 9.375 6.75 9.375C5.71447 9.375 4.875 10.2145 4.875 11.25C4.875 12.2855 5.71447 13.125 6.75 13.125Z"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
