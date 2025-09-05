@@ -1,0 +1,76 @@
+query GetEventById($id: String!) {
+    eventById(id: $id) {
+        id
+        eventId
+        metadataHash
+        metadata {
+            title
+            description
+            image
+            location {
+                id
+                name
+                address
+                placeId
+                latitude
+                longitude
+            }
+            virtualLink
+        }
+        isPaid
+        isActive
+        capacity
+        organizer
+        startDate
+        endDate
+        venueType
+        requiresApproval
+        tickets {
+            id
+            isUsed
+            checkedInAt
+            attendee
+            payment {
+                amount
+                token {
+                    id
+                    tokenAddress
+                }
+                payer
+            }
+            registration {
+                id
+                attendee
+                approved
+                approvedAt
+                registeredAt
+            }
+            issuedAt
+        }
+        paymentTokens {
+            tokenAddress
+            price
+        }
+        payments {
+            amount
+        }
+        registrations {
+            id
+            attendee
+            approved
+            approvedAt
+            registeredAt
+            ticket {
+                id
+                payment {
+                    amount
+                    token {
+                        id
+                        tokenAddress
+                    }
+                    payer
+                }
+            }
+        }
+    }
+}
