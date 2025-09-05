@@ -14,6 +14,7 @@ export * from "./plus";
 export * from "./privacy";
 export * from "./qr-code";
 export * from "./rocket-launch";
+export * from "./search";
 export * from "./settings";
 export * from "./share";
 export * from "./sun";
