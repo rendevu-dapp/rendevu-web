@@ -1,0 +1,68 @@
+query GetEventGuests(
+    $id: String!
+    $registrationsFilter: RegistrationWhereInput
+    $paymentFilter: PaymentWhereInput
+) {
+    eventById(id: $id) {
+        id
+        eventId
+        isPaid
+        metadata {
+            title
+            image
+            description
+            image
+        }
+        capacity
+        requiresApproval
+        tickets {
+            id
+            attendee
+            payment {
+                id
+                amount
+                payer
+                isRefunded
+                paymentDate
+                token {
+                    id
+                    price
+                    tokenAddress
+                }
+                registration {
+                    id
+                }
+                paymentDate
+            }
+            registration {
+                id
+                approved
+                approvedAt
+                registeredAt
+            }
+            issuedAt
+        }
+        registrations(where: $registrationsFilter) {
+            id
+            approved
+            attendee
+            registeredAt
+        }
+        payments(where: $paymentFilter) {
+            id
+            amount
+            payer
+            isRefunded
+            paymentDate
+            token {
+                id
+                price
+                tokenAddress
+            }
+            registration {
+                id
+            }
+            paymentDate
+        }
+    }
+}
