@@ -18,6 +18,7 @@ import About from "./about";
 import EventDetails from "./event-details";
 import Header from "./header";
 import ManageEventLoadingSkeleton from "./loading-skeleton";
+import ManageOptions from "./options";
 import { transformTickets } from "./transform-tickets";
 
 type ManageEventPageProps = {
@@ -173,6 +174,7 @@ export const ManageEventPage = ({
           <Header event={validatedEvent} onEventUpdated={handleEventUpdated} />
           <EventDetails event={validatedEvent} />
           <About event={validatedEvent} />
+          <ManageOptions event={validatedEvent} />
         </div>
       </div>
     </main>
