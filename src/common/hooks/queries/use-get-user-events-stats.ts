@@ -4,7 +4,6 @@ import { QueryHookOptions, useQuery } from "@apollo/client";
 import type {
   GetUserEventsStatsQuery,
   GetUserEventsStatsQueryVariables,
-  // @ts-expect-error err
 } from "@/common/graphql/generated/graphql";
 // graphql
 import { GetUserEventsStatsDocument } from "@/common/graphql/generated/graphql";

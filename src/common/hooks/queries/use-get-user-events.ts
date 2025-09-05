@@ -7,7 +7,6 @@ import {
 import type {
   GetUserEventsQuery,
   GetUserEventsQueryVariables,
-  // @ts-expect-error error
 } from "@/common/graphql/generated/graphql";
 import { GetUserEventsDocument } from "@/common/graphql/generated/graphql";
 
