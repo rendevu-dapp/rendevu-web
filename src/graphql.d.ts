@@ -1,4 +1,13 @@
 
+declare module '*/get-event-by-id.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetEventById: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/get-user-event-stats.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

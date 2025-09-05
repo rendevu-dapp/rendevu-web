@@ -1,5 +1,7 @@
+export * from "./accessibility";
 export * from "./ai";
 export * from "./bolt";
+export * from "./close";
 export * from "./conditions";
 export * from "./edit";
 export * from "./explore";
