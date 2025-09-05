@@ -5,15 +5,14 @@ import { addToast } from "@heroui/react";
 // tanstack query
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useActiveAccount, useSendAndConfirmTransaction } from "thirdweb/react";
-
+// graphql
+import { GetEventByIdDocument } from "@/common/graphql/generated/graphql";
 // hooks
 import { useUploadEventImage } from "@/common/hooks/api/mutations";
 // schemas
 import { EditEventValues } from "@/common/schemas/edit-event.schema";
 // types
 import { Event } from "@/common/types/models/event";
-// graphql
-import { GetEventByIdDocument } from "@/graphql/generated/graphql";
 import { updateEventFetcher } from "./update-event-fetcher";
 
 export const useUpdateEvent = ({

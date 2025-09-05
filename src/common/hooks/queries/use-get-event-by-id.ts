@@ -8,8 +8,8 @@ import {
 import type {
   GetEventByIdQuery,
   GetEventByIdQueryVariables,
-} from "@/graphql/generated/graphql";
-import { GetEventByIdDocument } from "@/graphql/generated/graphql";
+} from "@/common/graphql/generated/graphql";
+import { GetEventByIdDocument } from "@/common/graphql/generated/graphql";
 
 export const useGetEventById = (args?: GetEventByIdQueryVariables) => {
   return useQuery<GetEventByIdQuery, GetEventByIdQueryVariables>(
