@@ -1,6 +1,7 @@
 export * from "./accessibility";
 export * from "./ai";
 export * from "./bolt";
+export * from "./calender";
 export * from "./chevron";
 export * from "./close";
 export * from "./conditions";
@@ -25,3 +26,4 @@ export * from "./task";
 export * from "./ticket-alt";
 export * from "./user";
 export * from "./video-camera";
+export * from "./wallet";

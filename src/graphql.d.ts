@@ -8,6 +8,15 @@ declare module '*/get-event-by-id.graphql' {
 }
     
 
+declare module '*/get-event-guest-list.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetEventGuests: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/get-user-event-stats.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

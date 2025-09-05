@@ -42,7 +42,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { TransactionReceipt } from "viem";
 
 // abis
-import { eventPlatformAbi } from "@/common/abis/event-plaform.abi";
+import { eventPlatformAbi } from "@/common/abis/event-platform.abi";
 // config
 import { thirdwebClient } from "@/common/configs";
 // constants
