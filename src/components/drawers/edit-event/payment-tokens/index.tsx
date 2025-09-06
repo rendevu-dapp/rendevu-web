@@ -2,7 +2,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 // imports
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import { useActiveWalletChain } from "thirdweb/react";
 // data
 import { defaultNativeToken, supportedTokens } from "@/common/data";
@@ -19,7 +19,7 @@ const PaymentTokens = () => {
   const [selectOpen, setSelectOpen] = useState(false);
 
   // hooks
-  const activeChain = useActiveWalletChain() || baseSepolia;
+  const activeChain = useActiveWalletChain() || base;
   const { control } = useFormContext<EditEventValues>();
   const { fields, update, remove, replace } = useFieldArray({
     control,

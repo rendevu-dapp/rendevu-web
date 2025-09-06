@@ -12,7 +12,7 @@ import {
   toTokens,
   toUnits,
 } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import { upload as uploadIpfs } from "thirdweb/storage";
 // abis
 import { eventPlatformAbi } from "@/common/abis/event-platform.abi";
@@ -78,7 +78,7 @@ export const updateEventFetcher = async (args: {
   }
 
   const defaultValues = {
-    chain: baseSepolia,
+    chain: base,
     details: {
       title: event.metadata?.title || "",
       description: event.metadata?.description || "",
@@ -94,7 +94,7 @@ export const updateEventFetcher = async (args: {
     },
     ticketing:
       event.paymentTokens?.map((token) => {
-        const tokenMetadata = supportedTokens[baseSepolia.id]?.find((t) =>
+        const tokenMetadata = supportedTokens[base.id]?.find((t) =>
           compareAddress(t.address, token.tokenAddress),
         );
         const decimals = tokenMetadata?.decimals || 18;
@@ -237,7 +237,7 @@ export const updateEventFetcher = async (args: {
   const eventPlatformContract = getContract({
     abi: eventPlatformAbi,
     address: eventPlatformContractAddress,
-    chain: baseSepolia,
+    chain: base,
     client: thirdwebClient,
   });
 

@@ -2,7 +2,7 @@
 
 import { Avatar, Select, SelectItem } from "@heroui/react";
 import { FC } from "react";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 // imports
 import {
   ChainIcon,
@@ -36,7 +36,7 @@ const TokensSelect: FC<TokensSelectProps> = ({
   handleTokenSelection,
 }) => {
   // hooks
-  const activeChain = useActiveWalletChain() || baseSepolia;
+  const activeChain = useActiveWalletChain() || base;
 
   return (
     <Select

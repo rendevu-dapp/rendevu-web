@@ -1,5 +1,5 @@
 // imports
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import {
   ConnectButtonProps,
   defaultTokens,
@@ -30,8 +30,8 @@ export const ConnectButton = (props: CustomConnectButtonProps) => {
       theme={isDark ? "dark" : "light"}
       client={thirdwebClient}
       wallets={wallets}
-      chain={baseSepolia}
-      chains={[baseSepolia]}
+      chain={base}
+      chains={[base]}
       supportedTokens={{
         ...defaultTokens,
         ...Object.entries(supportedTokens).reduce((accum, current) => {

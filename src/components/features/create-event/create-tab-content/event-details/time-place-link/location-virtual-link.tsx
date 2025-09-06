@@ -5,13 +5,13 @@ import {
   VideoCameraIcon,
   XIcon,
 } from "@phosphor-icons/react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { classnames } from "@/common/helpers";
 import {
   CreateEventValues,
   LocationValues,
 } from "@/common/schemas/create-event.schema";
-
 import { LocationDrawer } from "@/components/drawers";
 import { MeetingLinkDisclosure } from "./meeting-link-disclosure";
 
@@ -39,12 +39,16 @@ export const LocationAndVirtualLink = ({
     setValue,
     formState: { errors },
   } = useFormContext<CreateEventValues>();
+  const [location, setLocation] = useState<Element>();
+  const [virtualLink, setVirtualLink] = useState<Element>();
 
-  const eventDetails = watch("details");
+  useEffect(() => {
+    setLocation(locationUI(errors, watch("details.location")));
+    setVirtualLink(virtualLinkUI(errors, watch("details.virtualLink")));
+  }, [watch("details.location"), watch("details.virtualLink")]);
 
-  return (
-    <div className="grid w-full grid-cols-12 gap-3">
-      {/* location */}
+  const locationUI = (errors, location: LocationValues) => {
+    return (
       <div className="col-span-6 flex flex-col gap-2.5">
         <Button
           as={"div"}
@@ -60,13 +64,13 @@ export const LocationAndVirtualLink = ({
           <div className="flex gap-2 ml-[-12px] md:ml-0">
             <MapPinIcon weight="fill" size={24} className="text-[#868E96]" />
             <div className="flex flex-col items-start gap-1">
-              {eventDetails?.location ? (
+              {location ? (
                 <>
                   <span className="text-[13px] md:text-sm font-bold text-[#343A40] dark:text-gray-300">
-                    {eventDetails.location.name}
+                    {location.name}
                   </span>
                   <span className="text-[12px] md:text-sm font-semibold text-[#868E96]">
-                    {eventDetails.location.address || "Selected location"}
+                    {location.address || "Selected location"}
                   </span>
                 </>
               ) : (
@@ -81,7 +85,7 @@ export const LocationAndVirtualLink = ({
               )}
             </div>
           </div>
-          {eventDetails?.location ? (
+          {location ? (
             <Button
               isIconOnly
               onPress={() => setValue("details.location", undefined)}
@@ -99,12 +103,11 @@ export const LocationAndVirtualLink = ({
           </div>
         )}
       </div>
-      <LocationDrawer
-        isOpen={locationDrawerOpen}
-        onOpenChange={locationDrawerOpenChange}
-        onSelect={onLocationSelect}
-      />
-      {/* virtual link */}
+    );
+  };
+
+  const virtualLinkUI = (errors, link: string) => {
+    return (
       <div className="col-span-6 flex flex-col gap-1">
         <Button
           as={"div"}
@@ -128,10 +131,10 @@ export const LocationAndVirtualLink = ({
               className="text-[#868E96]"
             />
             <div className="flex flex-col items-start gap-1">
-              {eventDetails?.virtualLink ? (
+              {link ? (
                 <>
                   <span className="text-[13px] md:text-sm font-bold text-[#343A40] dark:text-gray-300">
-                    {eventDetails.virtualLink}
+                    {link}
                   </span>
                   <span className="text-[12px] md:text-sm font-semibold text-[#868E96]">
                     Selected virtual link
@@ -149,7 +152,7 @@ export const LocationAndVirtualLink = ({
               )}
             </div>
           </div>
-          {eventDetails?.virtualLink ? (
+          {link ? (
             <Button
               isIconOnly
               onPress={() => setValue("details.virtualLink", undefined)}
@@ -167,6 +170,20 @@ export const LocationAndVirtualLink = ({
           </div>
         )}
       </div>
+    );
+  };
+
+  return (
+    <div className="grid w-full grid-cols-12 gap-3">
+      {/* location */}
+      {location}
+      <LocationDrawer
+        isOpen={locationDrawerOpen}
+        onOpenChange={locationDrawerOpenChange}
+        onSelect={onLocationSelect}
+      />
+      {/* virtual link */}
+      {virtualLink}
       <MeetingLinkDisclosure
         isOpen={meetingLinkDisclosureOpen}
         onOpenChange={meetingLinkDisclosureOpenChange}

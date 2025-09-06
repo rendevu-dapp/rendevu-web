@@ -22,7 +22,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 // thirdweb
 import { toTokens } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 // imports
 import { useMediaQuery } from "usehooks-ts";
 import { supportedTokens } from "@/common/data";
@@ -77,7 +77,7 @@ export const EditEventDrawer: FC<EditEventDrawerProps> = ({
 
   const defaultValues = useMemo(
     () => ({
-      chain: baseSepolia,
+      chain: base,
       details: {
         title: event.metadata?.title || "",
         description: event.metadata?.description || "",
@@ -129,7 +129,7 @@ export const EditEventDrawer: FC<EditEventDrawerProps> = ({
       },
       ticketing:
         event.paymentTokens?.map((token) => {
-          const tokenMetadata = supportedTokens[baseSepolia.id]?.find((t) =>
+          const tokenMetadata = supportedTokens[base.id]?.find((t) =>
             compareAddress(t.address, token.tokenAddress),
           );
           const decimals = tokenMetadata?.decimals || 18;

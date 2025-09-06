@@ -1,4 +1,4 @@
 // imports
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 
-export const supportedChains = [baseSepolia];
+export const supportedChains = [base];

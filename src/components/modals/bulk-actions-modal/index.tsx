@@ -20,7 +20,7 @@ import {
   PreparedTransaction,
   prepareContractCall,
 } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import {
   Blobbie,
   useActiveAccount,
@@ -100,7 +100,7 @@ export const BulkActionsModal: FC<BulkActionsModalsProps> = ({
 
     const contract = getContract({
       client: thirdwebClient,
-      chain: baseSepolia,
+      chain: base,
       abi: eventPlatformAbi,
       address: eventPlatformContractAddress,
     });

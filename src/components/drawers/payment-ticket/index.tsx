@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Drawer, DrawerContent, DrawerFooter } from "@heroui/react";
-import { FC, useCallback, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { useMediaQuery } from "usehooks-ts";
 import { defaultNativeToken, supportedTokens } from "@/common/data";
@@ -28,13 +28,9 @@ export const PaymentTicketDrawer: FC<PaymentTicketProps> = ({
   });
 
   const selectedChain = watch("chain");
-  const netWorkSelectedTokens = useMemo(
-    () =>
-      selectedChain
-        ? [defaultNativeToken, ...(supportedTokens[selectedChain.id] || [])]
-        : [],
-    [selectedChain],
-  );
+  let netWorkSelectedTokens = selectedChain
+    ? [defaultNativeToken, ...(supportedTokens[selectedChain?.id] || [])]
+    : [];
 
   const handleTokenSelection = useCallback(
     (keys: Set<string>) => {
@@ -75,6 +71,13 @@ export const PaymentTicketDrawer: FC<PaymentTicketProps> = ({
     }),
     [isMobile],
   );
+
+  useEffect(() => {
+    netWorkSelectedTokens = [
+      defaultNativeToken,
+      ...(supportedTokens[selectedChain?.id] || []),
+    ];
+  }, [watch("chain")]);
 
   return (
     <Drawer

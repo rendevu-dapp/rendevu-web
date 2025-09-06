@@ -1,4 +1,4 @@
-// react
+// use-client
 
 import { Divider, Input, NumberInput, Switch, Textarea } from "@heroui/react";
 // heroui
@@ -7,7 +7,7 @@ import { Users } from "@phosphor-icons/react";
 import { Map } from "@vis.gl/react-google-maps";
 // next
 import Image from "next/image";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 // react-hook-form
 import { useFormContext } from "react-hook-form";
@@ -21,6 +21,7 @@ import { TimePlaceLink } from "./time-place-link";
 
 export const EventDetails = () => {
   const [unlimitedGuests, setUnlimitedGuests] = useState<boolean>();
+  const [mapUIItem, setMapUIItem] = useState<Element>();
 
   // hooks
   const {
@@ -30,14 +31,39 @@ export const EventDetails = () => {
     formState: { errors },
   } = useFormContext<CreateEventValues>();
 
-  const location = watch("details.location");
-  const guestLimit = watch("details.guestLimit");
-
   useLayoutEffect(() => {
     if (unlimitedGuests) {
       setValue("details.guestLimit", 0);
     }
   }, [unlimitedGuests, setValue]);
+
+  useEffect(() => {
+    setMapUIItem(
+      mapUI(
+        watch("details.location")?.placeId || "ChIJc6e3soSQ3w8R0y0OZdhO0b4",
+      ),
+    );
+  }, [watch("details.location")?.placeId]);
+
+  const mapUI = (placeId: string) => {
+    return (
+      <div className="h-80 w-full overflow-hidden rounded-3xl">
+        <Map
+          mapId={"f524ded6b30acec43bad2b6e"}
+          reuseMaps={true}
+          style={{ width: "100%", height: "100%" }}
+          defaultZoom={15}
+          defaultCenter={{ lat: 0, lng: 0 }}
+          gestureHandling={"cooperative"}
+          clickableIcons={false}
+          disableDefaultUI={true}
+          disableDoubleClickZoom={true}
+        >
+          <GoogleMap placeId={placeId} />
+        </Map>
+      </div>
+    );
+  };
 
   return (
     <div className="flex w-full flex-col gap-7">
@@ -68,23 +94,7 @@ export const EventDetails = () => {
           <TimePlaceLink />
         </div>
         {/* show map if place id is available */}
-        {Boolean(location?.placeId) && (
-          <div className="h-80 w-full overflow-hidden rounded-3xl">
-            <Map
-              mapId={"f524ded6b30acec43bad2b6e"}
-              reuseMaps={true}
-              style={{ width: "100%", height: "100%" }}
-              defaultZoom={15}
-              defaultCenter={{ lat: 0, lng: 0 }}
-              gestureHandling={"cooperative"}
-              clickableIcons={false}
-              disableDefaultUI={true}
-              disableDoubleClickZoom={true}
-            >
-              <GoogleMap placeId={location!.placeId!} />
-            </Map>
-          </div>
-        )}
+        {Boolean(watch("details.location")?.placeId) && mapUIItem}
         {/* requires approval, guest limit and description */}
         <div className="flex w-full flex-col gap-6">
           <div className="flex w-full flex-row items-center justify-between gap-1 rounded-3xl border border-[#E9ECEF] dark:border-[#343A40] px-6 py-7">
@@ -125,7 +135,7 @@ export const EventDetails = () => {
               aria-label="Guest Limit"
               placeholder="0"
               isDisabled={unlimitedGuests}
-              value={unlimitedGuests ? undefined : guestLimit}
+              value={unlimitedGuests ? undefined : watch("details.guestLimit")}
               onChange={(value) => {
                 const guestLimit =
                   typeof value === "number"

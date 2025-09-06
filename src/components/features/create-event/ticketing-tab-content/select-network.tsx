@@ -2,7 +2,7 @@
 
 import { Card, CardBody, Image } from "@heroui/react";
 import { PlusIcon } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // imports
 import { useFormContext } from "react-hook-form";
 import { ChainIcon, ChainName, ChainProvider } from "thirdweb/react";
@@ -25,7 +25,37 @@ export const SelectNetwork = () => {
     watch,
     formState: { errors },
   } = useFormContext<CreateEventValues>();
-  const selectedChain = watch("chain");
+  const [chain, setChain] = useState<Element>();
+
+  useEffect(() => {
+    setChain(chainUI(watch("chain")));
+  }, [watch("chain")]);
+
+  const chainUI = (selectedChain) => {
+    return (
+      <div className="flex flex-col gap-3">
+        <span className="text-sm font-semibold text-[#343A40] dark:text-gray-300">
+          Network
+        </span>
+        {selectedChain ? (
+          <ChainProvider chain={selectedChain}>
+            <div className="flex items-center gap-2">
+              <ChainIcon
+                client={thirdwebClient}
+                className="text-tiny h-5 w-5"
+              />
+              <ChainName className="text-default-500 text-sm font-medium" />
+            </div>
+          </ChainProvider>
+        ) : (
+          <span className="text-[13px] md:text-sm font-medium text-[#868E96]">
+            Select the blockchain chain (network) you want to host event or
+            accept crypto payments on.
+          </span>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="flex flex-col gap-3">
@@ -53,27 +83,7 @@ export const SelectNetwork = () => {
                 height={20}
                 className="min-w-[20px] min-h-[20px]"
               />
-              <div className="flex flex-col gap-3">
-                <span className="text-sm font-semibold text-[#343A40] dark:text-gray-300">
-                  Network
-                </span>
-                {selectedChain ? (
-                  <ChainProvider chain={selectedChain}>
-                    <div className="flex items-center gap-2">
-                      <ChainIcon
-                        client={thirdwebClient}
-                        className="text-tiny h-5 w-5"
-                      />
-                      <ChainName className="text-default-500 text-sm font-medium" />
-                    </div>
-                  </ChainProvider>
-                ) : (
-                  <span className="text-[13px] md:text-sm font-medium text-[#868E96]">
-                    Select the blockchain chain (network) you want to host event
-                    or accept crypto payments on.
-                  </span>
-                )}
-              </div>
+              {chain}
             </div>
             <div className="min-w-[15px] min-h-[15px]">
               <PlusIcon weight="bold" size={15} color="#868E96" />

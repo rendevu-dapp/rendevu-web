@@ -4,6 +4,7 @@ import { FC } from "react";
 import { useActiveAccount } from "thirdweb/react";
 // helpers
 import { compareAddress } from "@/common/helpers";
+import { Event } from "@/common/types/models/event";
 // types
 import {
   Registration as EventRegistration,
@@ -19,6 +20,8 @@ import Registration from "./registration";
 
 type EventCoreDetailsProps = {
   eventId: string;
+  event: Event;
+  title: string;
   realEventId: string;
   host?: string;
   isPaid?: boolean;
@@ -36,6 +39,8 @@ type EventCoreDetailsProps = {
 
 const EventCoreDetails: FC<EventCoreDetailsProps> = ({
   eventId,
+  event,
+  title,
   realEventId,
   host,
   isPaid = false,
@@ -69,10 +74,14 @@ const EventCoreDetails: FC<EventCoreDetailsProps> = ({
       {/* registration */}
       {!isHost && (
         <Registration
+          eventId={eventId}
+          event={event}
           realEventId={realEventId}
           isPaid={isPaid}
+          title={title}
           startDate={startDate}
           endDate={endDate}
+          location={location}
           participants={participants}
           registrations={registrations}
           paymentTokens={paymentTokens}

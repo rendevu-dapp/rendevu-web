@@ -1,4 +1,4 @@
-// react
+"use client";
 
 // imports
 import {
@@ -28,7 +28,7 @@ import {
   toTokens,
   ZERO_ADDRESS,
 } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import { approve, balanceOf } from "thirdweb/extensions/erc20";
 import {
   ChainIcon,
@@ -40,7 +40,6 @@ import {
 } from "thirdweb/react";
 import { useMediaQuery } from "usehooks-ts";
 import { TransactionReceipt } from "viem";
-
 // abis
 import { eventPlatformAbi } from "@/common/abis/event-platform.abi";
 // config
@@ -56,7 +55,6 @@ import {
   EventRegistrationValues,
   eventRegistrationSchema,
 } from "@/common/schemas/event-registration.schema";
-
 // types
 import { PaymentToken } from "@/components/features/single-event/event-details/type";
 
@@ -80,7 +78,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
   onRefetchEvent,
 }) => {
   // hooks
-  const activeChain = baseSepolia;
+  const activeChain = base;
   const account = useActiveAccount();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { mutateAsync: sendAndConfirmTx } = useSendAndConfirmTransaction();
@@ -130,7 +128,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
 
     const contract = getContract({
       client: thirdwebClient,
-      chain: baseSepolia,
+      chain: base,
       abi: eventPlatformAbi,
       address: eventPlatformContractAddress,
     });
@@ -162,7 +160,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
 
     const contract = getContract({
       client: thirdwebClient,
-      chain: baseSepolia,
+      chain: base,
       abi: eventPlatformAbi,
       address: eventPlatformContractAddress,
     });
@@ -176,7 +174,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
     if (!isNativeTokenPayment) {
       const erc20Contract = getContract({
         client: thirdwebClient,
-        chain: baseSepolia,
+        chain: base,
         address: data.payment.token,
       });
 
@@ -231,6 +229,11 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
         txReceipt = await handleRegisterPaidEvent(data);
       }
 
+      // close modal
+      onOpenChange(false);
+      // refetch event details
+      onRefetchEvent();
+
       addToast({
         title: "Registration successful",
         description: (
@@ -239,7 +242,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
             <Link
               target="_blank"
               rel="noopener noreferrer"
-              href={`https://sepolia.basescan.org/tx/${txReceipt.transactionHash}`}
+              href={`https://basescan.org/tx/${txReceipt.transactionHash}`}
               className="text-secondary text-sm font-medium inline-flex items-center gap-1"
             >
               <span>View Transaction</span>
@@ -250,10 +253,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
         color: "success",
       });
 
-      // refetch event details
-      onRefetchEvent();
-      // close modal
-      onOpenChange(false);
+      window.location.reload();
     } catch (error) {
       if (error instanceof Error) {
         addToast({
@@ -362,7 +362,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
                             {items.map((item) => (
                               <TokenProvider
                                 key={item.key}
-                                chain={baseSepolia}
+                                chain={base}
                                 client={thirdwebClient}
                                 address={item.data?.tokenAddress}
                               >
@@ -425,7 +425,7 @@ export const EventRegistrationModal: FC<EventRegistrationProps> = ({
                         >
                           <TokenProvider
                             key={paymentToken.tokenAddress}
-                            chain={baseSepolia}
+                            chain={base}
                             client={thirdwebClient}
                             address={paymentToken.tokenAddress}
                           >

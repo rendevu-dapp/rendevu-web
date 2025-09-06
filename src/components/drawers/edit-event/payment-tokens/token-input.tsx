@@ -8,7 +8,7 @@ import {
 } from "@heroui/react";
 import { X } from "@phosphor-icons/react";
 import { FC } from "react";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import {
   ChainIcon,
   ChainProvider,
@@ -34,7 +34,7 @@ const TokenInput: FC<TokenInputProps> = ({
   onChange,
   onRemove,
 }) => {
-  const selectedChain = useActiveWalletChain() || baseSepolia;
+  const selectedChain = useActiveWalletChain() || base;
 
   return (
     <Card className="border border-[#E9ECEF] px-2 py-1 shadow-none dark:border dark:border-[#343A40]">

@@ -12,23 +12,30 @@ import { Blobbie, useActiveAccount } from "thirdweb/react";
 import { compareAddress, shortenAddress } from "@/common/helpers";
 // hooks
 import { useGetUserProfile } from "@/common/hooks/api/queries";
-// icon components
-import { TicketAltIcon } from "@/components/icons";
+import { Event } from "@/common/types/models/event";
 // components
-import { EventRegistrationModal, SelfCheckInModal } from "@/components/modals";
-
+import {
+  EventRegistrationModal,
+  SelfCheckInModal,
+  ViewTicketModal,
+} from "@/components/modals";
 // types
 import {
   Registration as EventRegistration,
+  Location,
   PaymentToken,
   Ticket,
 } from "../type";
 
 type RegistrationProps = {
+  eventId: string;
+  event: Event;
   realEventId: string;
+  title: string;
   isPaid?: boolean;
   startDate?: string;
   endDate?: string;
+  location?: Location;
   participants: Ticket[];
   paymentTokens: PaymentToken[];
   registrations: EventRegistration[];
@@ -36,10 +43,14 @@ type RegistrationProps = {
 };
 
 const Registration: FC<RegistrationProps> = ({
+  eventId,
+  event,
   realEventId,
+  title,
   isPaid = false,
   startDate,
   endDate,
+  location,
   participants,
   registrations,
   paymentTokens,
@@ -153,15 +164,14 @@ const Registration: FC<RegistrationProps> = ({
               }
 
               return (
-                <Button
-                  variant="bordered"
-                  startContent={
-                    <TicketAltIcon size={16} className="text-black" />
-                  }
-                  className="dark:text-black !border-1 border-black text-xs font-semibold rounded-full"
-                >
-                  View Ticket
-                </Button>
+                <ViewTicketModal
+                  eventId={eventId}
+                  event={event}
+                  title={title}
+                  startDate={startDate}
+                  endDate={endDate}
+                  location={location}
+                />
               );
             })()}
 

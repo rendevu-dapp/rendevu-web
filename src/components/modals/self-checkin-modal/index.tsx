@@ -21,7 +21,7 @@ import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 // thirdweb
 import { getContract, prepareContractCall } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import { useActiveAccount, useSendAndConfirmTransaction } from "thirdweb/react";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -95,7 +95,7 @@ export const SelfCheckInModal: FC<SelfCheckInModalProps> = ({
       // get the contract instance
       const contract = getContract({
         client: thirdwebClient,
-        chain: baseSepolia,
+        chain: base,
         abi: eventPlatformAbi,
         address: eventPlatformContractAddress,
       });

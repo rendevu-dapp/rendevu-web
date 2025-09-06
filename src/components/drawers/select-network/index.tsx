@@ -5,7 +5,11 @@ import { FC, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Chain } from "thirdweb/chains";
 import { useMediaQuery } from "usehooks-ts";
-import { supportedChains } from "@/common/data";
+import {
+  defaultNativeToken,
+  supportedChains,
+  supportedTokens,
+} from "@/common/data";
 import { CreateEventValues } from "@/common/schemas/create-event.schema";
 import { SelectNetworkBody } from "./select-network-body";
 import { SelectNetworkHeader } from "./select-network-header";
@@ -21,8 +25,8 @@ export const SelectNetworkDrawer: FC<SelectNetworkDrawerProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const { watch, setValue } = useFormContext<CreateEventValues>();
-  const selectedChain = watch("chain");
+  const { setValue } = useFormContext<CreateEventValues>();
+  const [selectedChain, setSelectedChain] = useState<object>();
 
   const filteredChains = useMemo(
     () =>
@@ -36,6 +40,7 @@ export const SelectNetworkDrawer: FC<SelectNetworkDrawerProps> = ({
 
   const handleSelectChain = (chain: Chain) => {
     setValue("chain", chain);
+    setSelectedChain(chain);
   };
 
   const handleSave = () => {
@@ -50,6 +55,8 @@ export const SelectNetworkDrawer: FC<SelectNetworkDrawerProps> = ({
     }),
     [isMobile],
   );
+
+  console.log(defaultNativeToken, supportedTokens);
 
   return (
     <Drawer

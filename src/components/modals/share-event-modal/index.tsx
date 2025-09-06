@@ -107,7 +107,7 @@ export const ShareEventModal: FC<ShareEventModalProps> = ({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setShareUrl(`${window.location.origin}/events/${details.eventId}`);
+      setShareUrl(`${window.location.origin}/e/${details.eventId}`);
     }
   }, [details.eventId]);
 

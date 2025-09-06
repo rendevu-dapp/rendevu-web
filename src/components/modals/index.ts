@@ -2,5 +2,8 @@ export * from "./bulk-actions-modal";
 export * from "./create-event-preview";
 export * from "./event-registration";
 export * from "./generate-self-checkin-qr-modal";
+export * from "./poap-details-modal";
+export * from "./request-poap-mint-codes";
 export * from "./self-checkin-modal";
 export * from "./share-event-modal";
+export * from "./view-ticket-modal";

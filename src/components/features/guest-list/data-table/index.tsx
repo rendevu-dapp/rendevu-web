@@ -3,7 +3,7 @@
 // react
 import { FC, useMemo } from "react";
 // imports
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 // data
 import { defaultNativeToken, supportedTokens } from "@/common/data";
 // helpers
@@ -21,7 +21,7 @@ type GuestListDataTableProps = {
 };
 const GuestListDataTable: FC<GuestListDataTableProps> = ({ eventId }) => {
   // hooks
-  const activeChain = baseSepolia;
+  const activeChain = base;
   const { data } = useSuspenseGetEventGuests({
     variables: {
       id: eventId,

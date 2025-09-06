@@ -1,5 +1,5 @@
 // types
-import { ApiError } from "@/common/types/api";
+import { APIErrorInfo, ApiError } from "@/common/types/api";
 
 export const createApiClient = (baseUrl: string) => {
   const defaultHeaders = {
@@ -77,3 +77,22 @@ export const createApiClient = (baseUrl: string) => {
       }),
   };
 };
+
+export function isApiError(error: unknown): error is ApiError {
+  if (typeof error !== "object" || error === null) {
+    return false;
+  }
+
+  const maybeError = error as Partial<ApiError>;
+  return (
+    typeof maybeError.message === "string" &&
+    (maybeError.status === undefined ||
+      typeof maybeError.status === "number") &&
+    (maybeError.info === undefined ||
+      (typeof maybeError.info === "object" &&
+        maybeError.info !== null &&
+        typeof (maybeError.info as APIErrorInfo).error === "string" &&
+        typeof (maybeError.info as APIErrorInfo).message === "string" &&
+        typeof (maybeError.info as APIErrorInfo).status === "string"))
+  );
+}

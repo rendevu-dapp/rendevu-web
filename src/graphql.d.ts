@@ -17,6 +17,15 @@ declare module '*/get-event-guest-list.graphql' {
 }
     
 
+declare module '*/get-event-poaps.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetEventPoaps: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/get-user-event-stats.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

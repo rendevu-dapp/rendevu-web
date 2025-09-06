@@ -8,7 +8,7 @@ import Link from "next/link";
 // react
 import { FC, useState } from "react";
 import { toTokens } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import { TokenIcon, TokenProvider, TokenSymbol } from "thirdweb/react";
 import { thirdwebClient } from "@/common/configs";
 
@@ -83,7 +83,7 @@ const EventCard: FC<EventCardProps> = ({
                       <TokenProvider
                         client={thirdwebClient}
                         address={token?.tokenAddress}
-                        chain={baseSepolia}
+                        chain={base}
                       >
                         <div className="flex items-center gap-2">
                           <TokenIcon

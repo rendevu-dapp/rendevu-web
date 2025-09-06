@@ -200,6 +200,8 @@ export const EventDetails = () => {
         {/* event core details - dates, location, link, details, registration, manage */}
         <EventCoreDetails
           eventId={eventId}
+          event={event}
+          title={event.metadata?.title || "Untitled Event"}
           realEventId={event?.eventId}
           host={event?.organizer}
           isPaid={event?.isPaid}

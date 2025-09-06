@@ -1,7 +1,7 @@
 // imports
 
 import { NATIVE_TOKEN_ADDRESS } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 
 // data
 export const fallbackIcons = {
@@ -17,16 +17,16 @@ import { normalizeAddress } from "@/common/helpers";
 
 // tokens
 export const supportedTokens = {
-  [baseSepolia.id]: [
+  [base.id]: [
     {
-      address: normalizeAddress("0x036CbD53842c5426634e7929541eC2318f3dCF7e"),
+      address: normalizeAddress("0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"),
       name: "USD Coin",
       symbol: "USDC",
       icon: fallbackIcons.usdc,
       decimals: 6,
     },
     {
-      address: normalizeAddress("0x808456652fdb597867f38412077A9182bf77359F"),
+      address: normalizeAddress("0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42"),
       name: "EURO Coin",
       symbol: "EURC",
       icon: fallbackIcons.eurc,

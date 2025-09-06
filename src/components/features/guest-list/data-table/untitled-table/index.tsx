@@ -17,7 +17,7 @@ import { format, formatDistanceToNowStrict, fromUnixTime } from "date-fns";
 import { FC, Fragment, useMemo, useState } from "react";
 import type { Selection, SortDescriptor } from "react-aria-components";
 import { toTokens } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+import { base } from "thirdweb/chains";
 import {
   Blobbie,
   ChainIcon,
@@ -304,7 +304,7 @@ export const Table01DividerLine: FC<Table01DividerLineProps> = ({
                         <TokenProvider
                           address={item.payment.token!.address}
                           client={thirdwebClient}
-                          chain={baseSepolia}
+                          chain={base}
                         >
                           <div className="flex items-center gap-2.5">
                             <div className="relative">
@@ -330,7 +330,7 @@ export const Table01DividerLine: FC<Table01DividerLineProps> = ({
                                 }
                               />
                               <span className="absolute -right-0.5 -bottom-0.5 h-3.5 w-3.5 rounded-full bg-white p-0.5">
-                                <ChainProvider chain={baseSepolia}>
+                                <ChainProvider chain={base}>
                                   <ChainIcon client={thirdwebClient} />
                                 </ChainProvider>
                               </span>
